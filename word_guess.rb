@@ -1,18 +1,57 @@
 class WordGuess
 	attr_accessor :guesses_wrong
 
-	def initialize(guesses_wrong)
-		@guesses_wrong = guesses_wrong
+	def initialize
+    @correct_word = "HANGMAN"
+		@guesses_wrong = 0
+    @wrong_letters = []
 	end
 
 	def get_user_input
-		# gets user input 
-		# loop
+		# gets user input
+    choice = "poop"
+    until choice == "WORD" || choice == "LETTER"
+      puts "Would you like to guess a word or a letter?"
+      choice = gets.chomp.upcase
+      if choice == "WORD"
+        #guess_word
+        puts "word" # test
+      elsif choice == "LETTER"
+        #guess_letter
+        puts "letter" # test
+      else
+        puts "Incorrect input."
+      end
+    end
 	end
+
+  def guess_word
+    puts "What is your guess?"
+    guess = gets.chomp.upcase
+    if guess == @correct_word
+      puts "Good job!"
+      # show_word
+      # win
+    else
+      puts "Sorry!"
+      # show_word
+      @guesses_wrong += 1
+      # show_strikes
+      # show_wrong_letters
+    end
+  end
+
+  def guess_letter
+
+  end
+
+  def check_word
+
+  end
 
 	def check_letter
 		# if logic, correct vs incorrect
-		# maybe a regex here to check 
+		# maybe a regex here to check
 
 		# if letter correct completes word, kick the user
 		# to the correct YOU WIN method
@@ -23,15 +62,16 @@ class WordGuess
 	end
 
 	def show_strikes
-		# visual representation of incorrect guesses 
+		# visual representation of incorrect guesses
 	end
 
 	def show_wrong_letters
 		# displays list in alphabetical order of wrong guesses
+    # Array.sort will sort it alphabetically
 	end
 
 	def win
-		# Happy cat win! 
+		# Happy cat win!
 	end
 
 	def lose
