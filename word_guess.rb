@@ -42,7 +42,19 @@ class WordGuess
   end
 
   def guess_letter
-
+  	puts "What is your guess?"
+  	guess = gets.chomp.upcase
+  	# check_letter(guess) 
+  	if guess = true
+  		puts "That letter was right! Good job!"
+  		# show word
+  	else
+  		puts "Sorry this was a wrong letter!"
+      # show_word
+      @guesses_wrong += 1
+      # show_strikes
+      # show_wrong_letters
+    end
   end
 
   def check_word
