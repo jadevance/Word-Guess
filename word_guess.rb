@@ -3,6 +3,7 @@ class WordGuess
 
 	def initialize
     @correct_word = %w(H A N G M A N)
+    @guessing_array = %w(_ _ _ _ _ _ _)
 		@guesses_wrong = 0
     @wrong_letters = []
 	end
@@ -14,18 +15,16 @@ class WordGuess
       puts "Would you like to guess a word or a letter?"
       choice = gets.chomp.upcase
       if choice == "WORD"
-        #guess_word
-        puts "word" # test
+        guess_word(choice)
       elsif choice == "LETTER"
-        #guess_letter
-        puts "letter" # test
+        guess_letter(choice)
       else
         puts "Incorrect input."
       end
     end
 	end
 
-  def guess_word
+  def guess_word(choice)
     puts "What is your guess?"
     word_guess = gets.chomp.upcase
     if word_guess == @correct_word
@@ -41,10 +40,10 @@ class WordGuess
     end
   end
 
-  def guess_letter
+  def guess_letter(choice)
   	puts "What is your guess?"
   	letter_guess = gets.chomp.upcase
-  	# check_letter(guess) 
+  	check_letter(letter_guess)
   	if letter_guess == true
   		puts "That letter was right! Good job!"
   		# show word
@@ -61,8 +60,17 @@ class WordGuess
 
   end
 
-	def check_letter
+	def check_letter(letter_guess)
 		# if logic, correct vs incorrect
+    # FIGURE THIS OUT WITH A LOOP TABLE
+    if @correct_word.include? letter_guess
+      @correct_word.each_with_index do |letter, index|
+        if letter == letter_guess
+           @guessing_array[index] = letter_guess
+           # letter_guess replaces the value of guessing_array at that index
+        end
+      end
+    end
 		# maybe a regex here to check
 
 		# if letter correct completes word, kick the user
@@ -72,6 +80,7 @@ class WordGuess
 	def show_word
 		# method to show word
 		puts "_ _ _ _ _ _ _"
+    # case
 	end
 
 	def show_strikes
@@ -108,6 +117,9 @@ thing = WordGuess.new
 thing.show_word
 
 
+
+#   go to that position in the array and replace the _ with the letter with the same index
+# end
 
 
 
