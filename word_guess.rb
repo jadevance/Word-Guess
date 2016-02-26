@@ -35,7 +35,7 @@ class WordGuess
 			puts "YOU WIN"
 			print @correct_word
 			puts
-			win
+			show_win
 			@win = true
     else
       puts "Sorry!"
@@ -134,7 +134,7 @@ class WordGuess
   CAT
 	end
 
-	def win
+	def show_win
 			puts(<<-CAT)	
                ________________
               |                |_____    __
