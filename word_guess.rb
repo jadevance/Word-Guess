@@ -47,11 +47,11 @@ class WordGuess
   	check_letter(letter_guess)
   	if @counter == "on"  
   		puts "That letter was right! Good job!"
-  		# show word
+  		show_word
   		@counter = "off"
   	else @counter == "off"
   		puts "Sorry this was a wrong letter!"
-      # show_word
+      show_word
       @guesses_wrong += 1
       # show_strikes
       # show_wrong_letters
@@ -68,11 +68,7 @@ class WordGuess
     if @correct_word.include? letter_guess
       @correct_word.each_with_index do |letter, index|
         if letter == letter_guess
-        	p letter_guess
-        	p letter
           @guessing_array[index] = letter_guess
-          p @guessing_array[index]
-          p @guessing_array
          	@counter = "on"
           # letter_guess replaces the value of guessing_array at that index
         end
@@ -87,7 +83,8 @@ class WordGuess
 
 	def show_word
 		# method to show word
-		puts "_ _ _ _ _ _ _"
+		print @guessing_array 
+		puts
     # case
 	end
 
@@ -123,6 +120,7 @@ puts "GOOD LUCK!\n\n"
 # thing is a placeholder because reasons
 thing = WordGuess.new
 thing.show_word
+thing.get_user_input
 
 
 
