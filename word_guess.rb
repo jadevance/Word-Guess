@@ -6,6 +6,7 @@ class WordGuess
     @guessing_array = %w(_ _ _ _ _ _ _)
 		@guesses_wrong = 0
     @wrong_letters = []
+    @counter = 0
 	end
 
 	def get_user_input
@@ -44,10 +45,11 @@ class WordGuess
   	puts "What is your guess?"
   	letter_guess = gets.chomp.upcase
   	check_letter(letter_guess)
-  	if letter_guess == true
+  	if @counter == "on"  
   		puts "That letter was right! Good job!"
   		# show word
-  	else
+  		@counter = "off"
+  	else @counter == "off"
   		puts "Sorry this was a wrong letter!"
       # show_word
       @guesses_wrong += 1
@@ -66,11 +68,17 @@ class WordGuess
     if @correct_word.include? letter_guess
       @correct_word.each_with_index do |letter, index|
         if letter == letter_guess
-           @guessing_array[index] = letter_guess
-           # letter_guess replaces the value of guessing_array at that index
+        	p letter_guess
+        	p letter
+          @guessing_array[index] = letter_guess
+          p @guessing_array[index]
+          p @guessing_array
+         	@counter = "on"
+          # letter_guess replaces the value of guessing_array at that index
         end
-      end
+      end 
     end
+    counter = "off"
 		# maybe a regex here to check
 
 		# if letter correct completes word, kick the user
