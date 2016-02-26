@@ -35,8 +35,6 @@ class WordGuess
       show_word
 			puts "YOU WIN"
 			@win = true
-			p @win
-			return @win
     else
       puts "Sorry!"
       show_word
@@ -127,16 +125,13 @@ puts "GOOD LUCK!\n\n"
 # Shows the word blanks at the start of the program
 # thing is a placeholder because reasons
 
-#win = false
+
 thing = WordGuess.new
 thing.show_word
 
-#thing.win=(false)
-
-#until thing.win == true
+until thing.win == true
 	thing.get_user_input
-	p @win
-#end
+end
 
 
 
