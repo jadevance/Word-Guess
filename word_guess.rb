@@ -120,7 +120,20 @@ class WordGuess
 	end
 
 	def lose
-		# Sad OH NO YOU LOSE cat
+			puts(<<-CAT)	
+               ________________
+              |                |_____    __
+              | OH NO YOU LOSE |     |__|  |_________
+              |________________|     |::|  |        /
+ /\\**/\\       |                \\.____|::|__|      <
+( o_o  )_     |                      \\::/  \\._______\\
+ (u--u   \\_)  |
+  (||___   )==\\
+,dP"/b/=( /P"/b\\
+|8 || 8\\=== || 8
+`b,  ,P  `b,  ,P
+  """`     """`
+  CAT
 	end
 
 end
@@ -146,29 +159,7 @@ until thing.win == true || thing.guesses_wrong == 10
 end
 if thing.guesses_wrong == 10
 	puts "you tried too many times. SORRY"
-	#call method lose
+	thing.lose
 end
 
 
-#   go to that position in the array and replace the _ with the letter with the same index
-# end
-
-
-
-
-#                ________________
-#               |                |_____    __
-#               |                |     |__|  |_________
-#               |________________|     |::|  |        /
-#  /\**/\       |                \.____|::|__|      <
-# ( o_o  )_     |                      \::/  \._______\
-#  (u--u   \_)  |
-#   (||___   )==\
-# ,dP"/b/=( /P"/b\
-# |8 || 8\=== || 8
-# `b,  ,P  `b,  ,P
-#   """`     """`
-#  HANGMAN
-# Display strikes (1-10)
-# At the end OH NO YOU LOSE
-# or CONGRATS YOU WIN
