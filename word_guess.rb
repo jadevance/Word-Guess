@@ -35,13 +35,13 @@ class WordGuess
 			puts "YOU WIN"
 			print @correct_word
 			puts
+			win
 			@win = true
     else
       puts "Sorry!"
       show_word
       @guesses_wrong += 1
 			show_strikes
-      # show_wrong_letters
 		end
   end
 
@@ -52,6 +52,7 @@ class WordGuess
   	if @counter == "on"
   		puts "That letter was right! Good job!"
   		@counter = "off"
+  		show_strikes
   		show_word
   		show_wrong_letters
   	else @counter == "off"
@@ -81,8 +82,6 @@ class WordGuess
       end
     end
     counter = "off"
-		# maybe a regex here to check
-
 		# if letter correct completes word, kick the user
 		# to the correct YOU WIN method
 	end
@@ -91,7 +90,6 @@ class WordGuess
 		# method to show word
 		print @guessing_array
 		puts
-    # case
 	end
 
 	def show_strikes
@@ -136,6 +134,24 @@ class WordGuess
   CAT
 	end
 
+	def win
+			puts(<<-CAT)	
+               ________________
+              |                |_____    __
+              |GOOD JOB YOU WIN| YAY |__|  |_________
+              |________________|  YAY|::|  |  YAY   /
+ /\\**/\\       |                \\.____|::|__| YAY <
+( o_o  )_     |                      \\::/  \\._______\\
+ (u--u   \\_)  |
+  (||___   )==\\
+,dP"/b/=( /P"/b\\
+|8 || 8\\=== || 8
+`b,  ,P  `b,  ,P
+  """`     """`
+  CAT
+	end
+
+
 end
 
 puts "WELCOME TO THE BEST GAME EVER:"
@@ -148,7 +164,7 @@ puts "4) You have ten chances to guess the correct word."
 puts "GOOD LUCK!\n\n"
 
 # Shows the word blanks at the start of the program
-# thing is a placeholder because reasons
+# thing variable is a placeholder because reasons
 
 
 thing = WordGuess.new
