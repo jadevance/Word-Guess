@@ -40,7 +40,7 @@ class WordGuess
       puts "Sorry!"
       show_word
       @guesses_wrong += 1
-			# show_strikes
+			show_strikes
       # show_wrong_letters
 		end
   end
@@ -57,7 +57,7 @@ class WordGuess
   		puts "Sorry this was a wrong letter!"
       show_word
       @guesses_wrong += 1
-      # show_strikes
+      show_strikes
       # show_wrong_letters
     end
   end
@@ -93,7 +93,20 @@ class WordGuess
 	end
 
 	def show_strikes
-		# visual representation of incorrect guesses
+	puts(<<-CAT)	
+               ________________
+              |                |_____    __
+              |  STRIKE #{@guesses_wrong}      |     |__|  |_________
+              |________________|     |::|  |        /
+ /\\**/\\       |                \\.____|::|__|      <
+( o_o  )_     |                      \\::/  \\._______\\
+ (u--u   \\_)  |
+  (||___   )==\\
+,dP"/b/=( /P"/b\\
+|8 || 8\\=== || 8
+`b,  ,P  `b,  ,P
+  """`     """`
+  CAT
 	end
 
 	def show_wrong_letters
@@ -123,11 +136,13 @@ puts "GOOD LUCK!\n\n"
 thing = WordGuess.new
 thing.show_word
 
-until thing.win == true
+until thing.win == true || thing.guesses_wrong == 10
 	thing.get_user_input
 end
-
-
+if thing.guesses_wrong == 10
+	puts "you tried too many times. SORRY"
+	#call method lose
+end
 
 
 #   go to that position in the array and replace the _ with the letter with the same index
