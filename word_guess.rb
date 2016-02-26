@@ -1,5 +1,5 @@
 class WordGuess
-	attr_accessor :guesses_wrong
+	attr_accessor :guesses_wrong, :win
 
 	def initialize
     @correct_word = %w(H A N G M A N)
@@ -7,6 +7,7 @@ class WordGuess
 		@guesses_wrong = 0
     @wrong_letters = []
     @counter = 0
+		@win = false
 	end
 
 	def get_user_input
@@ -29,20 +30,20 @@ class WordGuess
     puts "What is your guess?"
     word_guess = gets.chomp.upcase
 		word_guess = word_guess.split(//)
-		p word_guess
-    if word_guess == @correct_word
+		if word_guess == @correct_word
       puts "Good job!"
       show_word
 			puts "YOU WIN"
-			# win
+			@win = true
+			p @win
+			return @win
     else
       puts "Sorry!"
       show_word
       @guesses_wrong += 1
-			puts @guesses_wrong
 			# show_strikes
       # show_wrong_letters
-    end
+		end
   end
 
   def guess_letter(choice)
@@ -101,9 +102,12 @@ class WordGuess
     # Array.sort will sort it alphabetically
 	end
 
-	def win
-		# Happy cat win!
-	end
+	# def win
+	# 	# Happy cat win!
+	# 	show_word
+	# 	puts "You win!"
+	# 	@win = true
+	# end
 
 	def lose
 		# Sad OH NO YOU LOSE cat
@@ -122,9 +126,18 @@ puts "GOOD LUCK!\n\n"
 
 # Shows the word blanks at the start of the program
 # thing is a placeholder because reasons
+
+#win = false
 thing = WordGuess.new
 thing.show_word
-thing.get_user_input
+
+#thing.win=(false)
+
+#until thing.win == true
+	thing.get_user_input
+	p @win
+#end
+
 
 
 
