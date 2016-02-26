@@ -2,7 +2,7 @@ class WordGuess
 	attr_accessor :guesses_wrong
 
 	def initialize
-    @correct_word = "HANGMAN"
+    @correct_word = %w(H A N G M A N)
 		@guesses_wrong = 0
     @wrong_letters = []
 	end
@@ -27,8 +27,8 @@ class WordGuess
 
   def guess_word
     puts "What is your guess?"
-    guess = gets.chomp.upcase
-    if guess == @correct_word
+    word_guess = gets.chomp.upcase
+    if word_guess == @correct_word
       puts "Good job!"
       # show_word
       # win
@@ -43,9 +43,9 @@ class WordGuess
 
   def guess_letter
   	puts "What is your guess?"
-  	guess = gets.chomp.upcase
+  	letter_guess = gets.chomp.upcase
   	# check_letter(guess) 
-  	if guess = true
+  	if letter_guess == true
   		puts "That letter was right! Good job!"
   		# show word
   	else
@@ -70,7 +70,8 @@ class WordGuess
 	end
 
 	def show_word
-		# method to show progress banner
+		# method to show word
+		puts "_ _ _ _ _ _ _"
 	end
 
 	def show_strikes
@@ -101,6 +102,10 @@ puts "3) If the letter is not in the word, you will lose a chance."
 puts "4) You have ten chances to guess the correct word."
 puts "GOOD LUCK!\n\n"
 
+# Shows the word blanks at the start of the program
+# thing is a placeholder because reasons
+thing = WordGuess.new
+thing.show_word
 
 
 
