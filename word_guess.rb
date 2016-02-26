@@ -32,8 +32,9 @@ class WordGuess
 		word_guess = word_guess.split(//)
 		if word_guess == @correct_word
       puts "Good job!"
-      show_word
 			puts "YOU WIN"
+			print @correct_word
+			puts
 			@win = true
     else
       puts "Sorry!"
@@ -99,13 +100,6 @@ class WordGuess
 		# displays list in alphabetical order of wrong guesses
     # Array.sort will sort it alphabetically
 	end
-
-	# def win
-	# 	# Happy cat win!
-	# 	show_word
-	# 	puts "You win!"
-	# 	@win = true
-	# end
 
 	def lose
 		# Sad OH NO YOU LOSE cat
