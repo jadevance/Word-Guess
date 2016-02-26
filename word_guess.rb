@@ -51,14 +51,16 @@ class WordGuess
   	check_letter(letter_guess)
   	if @counter == "on"
   		puts "That letter was right! Good job!"
-  		show_word
   		@counter = "off"
+  		show_word
+  		show_wrong_letters
   	else @counter == "off"
   		puts "Sorry this was a wrong letter!"
-      show_word
       @guesses_wrong += 1
       show_strikes
-      # show_wrong_letters
+      @wrong_letters << letter_guess
+      show_word
+      show_wrong_letters
     end
   end
 
@@ -112,6 +114,9 @@ class WordGuess
 	def show_wrong_letters
 		# displays list in alphabetical order of wrong guesses
     # Array.sort will sort it alphabetically
+    puts
+    puts "WRONG LETTERS GUESSED: #{@wrong_letters.sort}"
+    puts
 	end
 
 	def lose
