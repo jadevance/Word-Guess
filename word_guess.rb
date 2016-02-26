@@ -28,15 +28,19 @@ class WordGuess
   def guess_word(choice)
     puts "What is your guess?"
     word_guess = gets.chomp.upcase
+		word_guess = word_guess.split(//)
+		p word_guess
     if word_guess == @correct_word
       puts "Good job!"
-      # show_word
-      # win
+      show_word
+			puts "YOU WIN"
+			# win
     else
       puts "Sorry!"
-      # show_word
+      show_word
       @guesses_wrong += 1
-      # show_strikes
+			puts @guesses_wrong
+			# show_strikes
       # show_wrong_letters
     end
   end
@@ -45,7 +49,7 @@ class WordGuess
   	puts "What is your guess?"
   	letter_guess = gets.chomp.upcase
   	check_letter(letter_guess)
-  	if @counter == "on"  
+  	if @counter == "on"
   		puts "That letter was right! Good job!"
   		show_word
   		@counter = "off"
@@ -72,7 +76,7 @@ class WordGuess
          	@counter = "on"
           # letter_guess replaces the value of guessing_array at that index
         end
-      end 
+      end
     end
     counter = "off"
 		# maybe a regex here to check
@@ -83,7 +87,7 @@ class WordGuess
 
 	def show_word
 		# method to show word
-		print @guessing_array 
+		print @guessing_array
 		puts
     # case
 	end
