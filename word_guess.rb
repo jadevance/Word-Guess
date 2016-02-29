@@ -50,8 +50,10 @@ class WordGuess
   def guess_letter(choice)
   	print "What is your guess? "
   	letter_guess = gets.chomp.upcase
-    while letter_guess.empty? || letter_guess.length > 1
+    while letter_guess.empty? || letter_guess.length > 1 || @wrong_letters.include?(letter_guess)
       puts "Sorry, that entry is incorrect!"
+      puts "Incorrect entries include empty input," 
+      puts "multiple letter entry and duplicate entry."
       print "What is your guess? "
       letter_guess = gets.chomp.upcase
     end
