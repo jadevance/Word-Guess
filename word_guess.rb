@@ -1,5 +1,4 @@
 require 'colorize'
-require 'lolcat'
 
 class WordGuess
 	attr_accessor :guesses_wrong, :win
