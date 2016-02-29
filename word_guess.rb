@@ -50,6 +50,11 @@ class WordGuess
   def guess_letter(choice)
   	print "What is your guess? "
   	letter_guess = gets.chomp.upcase
+    while letter_guess.empty? || letter_guess.length > 1
+      puts "Sorry, that entry is incorrect!"
+      print "What is your guess? "
+      letter_guess = gets.chomp.upcase
+    end
   	# calls method to check letter against correct word array
     check_letter(letter_guess)
   	# counter allows a return of letters that are the same character
