@@ -8,13 +8,13 @@ class WordGuess
     @guessing_array = %w(_ _ _ _ _ _ _)
 		@guesses_wrong = 0
     @wrong_letters = []
-    @counter = "poop" 
+    @counter = "poop"
 		@win = false
 	end
 
 	def get_user_input
 		# gets user input
-    # poop consistency! 
+    # poop consistency!
     choice = "poop"
     until choice == "WORD" || choice == "LETTER"
       puts "Would you like to guess a word or a letter?"
@@ -54,7 +54,7 @@ class WordGuess
   	letter_guess = gets.chomp.upcase
     while letter_guess.empty? || letter_guess.length > 1 || @wrong_letters.include?(letter_guess)
       puts "Sorry, that entry is incorrect!"
-      puts "Incorrect entries include empty input," 
+      puts "Incorrect entries include empty input,"
       puts "multiple letter entry and duplicate entry."
       print "What is your guess? "
       letter_guess = gets.chomp.upcase
@@ -113,7 +113,7 @@ class WordGuess
 	end
 
   def show_strikes
-  puts(<<-CAT) 
+  puts(<<-CAT)
                ________________
               |                |_____    __
               |  STRIKE #{@guesses_wrong}      |     |__|  |_________
@@ -131,7 +131,7 @@ class WordGuess
 
 
 	def lose
-		cat = (<<-CAT)	
+		cat = (<<-CAT)
                ________________
               |                |_____    __
               | OH NO YOU LOSE |     |__|  |_________
@@ -154,8 +154,8 @@ class WordGuess
     print @correct_word
     puts
     @win = true
-		cat = (<<-CAT)	
-                 ________________
+		cat = (<<-CAT)
+               ________________
               |                |_____    __
               |GOOD JOB YOU WIN| YAY |__|  |_________
               |________________|  YAY|::|  |  YAY   /
@@ -196,5 +196,3 @@ if thing.guesses_wrong == 10
 	puts "you tried too many times. SORRY"
 	thing.lose
 end
-
-
