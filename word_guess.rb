@@ -6,12 +6,13 @@ class WordGuess
     @guessing_array = %w(_ _ _ _ _ _ _)
 		@guesses_wrong = 0
     @wrong_letters = []
-    @counter = 0
+    @counter = "poop" 
 		@win = false
 	end
 
 	def get_user_input
 		# gets user input
+    # poop consistency! 
     choice = "poop"
     until choice == "WORD" || choice == "LETTER"
       puts "Would you like to guess a word or a letter?"
@@ -29,14 +30,10 @@ class WordGuess
   def guess_word(choice)
     puts "What is your guess?"
     word_guess = gets.chomp.upcase
+    # splits the word into an array of letters
 		word_guess = word_guess.split(//)
 		if word_guess == @correct_word
-      puts "Good job!"
-			puts "YOU WIN"
-			print @correct_word
-			puts
 			show_win
-			@win = true
     else
       puts "Sorry!"
       show_word
@@ -48,42 +45,43 @@ class WordGuess
   def guess_letter(choice)
   	puts "What is your guess?"
   	letter_guess = gets.chomp.upcase
-  	check_letter(letter_guess)
-  	if @counter == "on"
+  	# calls method to check letter against correct word array
+    check_letter(letter_guess)
+  	# counter allows a return of letters that are the same character
+    # return keyword would exit before reaching the second same letter
+    if @counter == "on"
   		puts "That letter was right! Good job!"
   		@counter = "off"
   		show_strikes
   		show_word
   		show_wrong_letters
+      if !@guessing_array.include?("_")
+        show_win
+      end
   	else @counter == "off"
   		puts "Sorry this was a wrong letter!"
+      # guesses_wrong feeds into show_strikes
       @guesses_wrong += 1
       show_strikes
+      # keeps track of wrong letter guesses in wrong_letter array
       @wrong_letters << letter_guess
+      # shows the progress of the guesses
       show_word
       show_wrong_letters
     end
   end
 
-  def check_word
-
-  end
-
 	def check_letter(letter_guess)
 		# if logic, correct vs incorrect
-    # FIGURE THIS OUT WITH A LOOP TABLE
     if @correct_word.include? letter_guess
       @correct_word.each_with_index do |letter, index|
         if letter == letter_guess
-          @guessing_array[index] = letter_guess
-         	@counter = "on"
           # letter_guess replaces the value of guessing_array at that index
+          @guessing_array[index] = letter_guess
+          @counter = "on"
         end
       end
     end
-    counter = "off"
-		# if letter correct completes word, kick the user
-		# to the correct YOU WIN method
 	end
 
 	def show_word
@@ -92,8 +90,16 @@ class WordGuess
 		puts
 	end
 
-	def show_strikes
-	puts(<<-CAT)	
+	def show_wrong_letters
+		# displays list in alphabetical order of wrong guesses
+    # Array.sort will sort it alphabetically
+    puts
+    puts "WRONG LETTERS GUESSED: #{@wrong_letters.sort}"
+    puts
+	end
+
+  def show_strikes
+  puts(<<-CAT)  
                ________________
               |                |_____    __
               |  STRIKE #{@guesses_wrong}      |     |__|  |_________
@@ -107,15 +113,8 @@ class WordGuess
 `b,  ,P  `b,  ,P
   """`     """`
   CAT
-	end
+  end
 
-	def show_wrong_letters
-		# displays list in alphabetical order of wrong guesses
-    # Array.sort will sort it alphabetically
-    puts
-    puts "WRONG LETTERS GUESSED: #{@wrong_letters.sort}"
-    puts
-	end
 
 	def lose
 			puts(<<-CAT)	
@@ -135,8 +134,13 @@ class WordGuess
 	end
 
 	def show_win
-			puts(<<-CAT)	
-               ________________
+    puts "Good job!"
+    puts "YOU WIN"
+    print @correct_word
+    puts
+    @win = true
+		puts(<<-CAT)	
+                 ________________
               |                |_____    __
               |GOOD JOB YOU WIN| YAY |__|  |_________
               |________________|  YAY|::|  |  YAY   /
@@ -150,8 +154,6 @@ class WordGuess
   """`     """`
   CAT
 	end
-
-
 end
 
 puts "WELCOME TO THE BEST GAME EVER:"
