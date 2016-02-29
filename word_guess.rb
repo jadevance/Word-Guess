@@ -1,3 +1,6 @@
+require 'colorize'
+require 'lolcat'
+
 class WordGuess
 	attr_accessor :guesses_wrong, :win
 
@@ -111,7 +114,7 @@ class WordGuess
 	end
 
   def show_strikes
-  puts(<<-CAT)  
+  puts(<<-CAT) 
                ________________
               |                |_____    __
               |  STRIKE #{@guesses_wrong}      |     |__|  |_________
@@ -129,7 +132,7 @@ class WordGuess
 
 
 	def lose
-			puts(<<-CAT)	
+		cat = (<<-CAT)	
                ________________
               |                |_____    __
               | OH NO YOU LOSE |     |__|  |_________
@@ -143,6 +146,7 @@ class WordGuess
 `b,  ,P  `b,  ,P
   """`     """`
   CAT
+  puts cat.colorize(:red)
 	end
 
 	def show_win
@@ -151,7 +155,7 @@ class WordGuess
     print @correct_word
     puts
     @win = true
-		puts(<<-CAT)	
+		cat = (<<-CAT)	
                  ________________
               |                |_____    __
               |GOOD JOB YOU WIN| YAY |__|  |_________
@@ -165,6 +169,8 @@ class WordGuess
 `b,  ,P  `b,  ,P
   """`     """`
   CAT
+  puts cat.colorize(:green)
+
 	end
 end
 
