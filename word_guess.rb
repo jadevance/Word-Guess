@@ -28,8 +28,13 @@ class WordGuess
 	end
 
   def guess_word(choice)
-    puts "What is your guess?"
+    print "What is your guess? "
     word_guess = gets.chomp.upcase
+      while word_guess.empty?
+        puts "Sorry, entries can not be blank!"
+        print "What is your guess? "
+        word_guess = gets.chomp.upcase
+      end
     # splits the word into an array of letters
 		word_guess = word_guess.split(//)
 		if word_guess == @correct_word
@@ -43,7 +48,7 @@ class WordGuess
   end
 
   def guess_letter(choice)
-  	puts "What is your guess?"
+  	print "What is your guess? "
   	letter_guess = gets.chomp.upcase
   	# calls method to check letter against correct word array
     check_letter(letter_guess)
